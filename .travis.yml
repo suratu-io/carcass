@@ -1,0 +1,26 @@
+language: node_js
+
+git:
+  submodules: true
+
+node_js:
+  - '12'
+
+install:
+  - npm i
+
+script:
+  - npm run lint
+  - npm test
+
+before_deploy:
+  - npm run build:storybook
+
+deploy:
+  provider: pages
+  local_dir: '/docs'
+  skip_cleanup: true
+  github_token: $GITHUB_TOKEN
+  keep_history: true
+  on:
+    branch: master
