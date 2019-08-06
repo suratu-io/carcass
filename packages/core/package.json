@@ -1,0 +1,21 @@
+{
+  "name": "@skeleton/core",
+  "version": "0.1.0-alpha.1",
+  "description": "Smart react components without styles",
+  "main": "dist/index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/suratu-io/skeleton-core"
+  },
+  "homepage": "https://github.com/suratu-io/skeleton-core#readme",
+  "keywords": [
+    "core",
+    "skeleton",
+    "skeletonjs",
+    "skeleton/core",
+    "ui-framework",
+    "ui"
+  ],
+  "author": "Suratu.IO",
+  "license": "MIT"
+}
