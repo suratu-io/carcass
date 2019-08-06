@@ -1,0 +1,25 @@
+{
+  "name": "skeleton-monorepo",
+  "version": "0.1.0-alpha.1",
+  "description": "Smart react component without styles",
+  "main": "index.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/suratu-io/skeleton.git"
+  },
+  "keywords": [
+    "react",
+    "skeleton",
+    "skeletonjs",
+    "smart-components",
+    "ui-framework",
+    "ui"
+  ],
+  "author": "Suratu.IO",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/suratu-io/skeleton/issues"
+  },
+  "homepage": "https://github.com/suratu-io/skeleton#readme"
+}
