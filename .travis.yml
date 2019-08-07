@@ -17,6 +17,7 @@ script:
 
 before_deploy:
   - npm run build:storybook
+  - mv docs/* .
 
 deploy:
   provider: pages
