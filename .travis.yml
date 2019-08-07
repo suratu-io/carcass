@@ -34,9 +34,9 @@ jobs:
           tags: true
           branch: master
     - stage: deploy_npm
-      before_deploy:
-        - npm version --no-git-tag-version $TRAVIS_TAG
       deploy:
+        script:
+          - npm version --no-git-tag-version $TRAVIS_TAG
         provider: npm
         email: alihan.arshabekov@gmail.com
         api_key: $NPM_TOKEN
