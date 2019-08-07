@@ -11,7 +11,7 @@ install:
 stages:
   - prepare
   - name: deploy_page
-    if: branch = master
+    if: tag IS present
   - name: deploy_npm
     if: tag IS present
 
@@ -31,14 +31,13 @@ jobs:
         keep_history: true
         github_token: $GITHUB_TOKEN
         on:
+          tags: true
           branch: master
     - stage: deploy_npm
       deploy:
         provider: npm
         email: alihan.arshabekov@gmail.com
-        tag: $TRAVIS_TAG
-        api_key:
-          secure: D2mOIV29ULXkpB4QSRwBmsdoWgfuukbgTw6sSaEgsxiF98ZOXK+ePp13uftTYqhdLAEmudbj2Sn2INTAz2fj/FWjSWJJ2UAa2OQRpqvXtV61aHNpllNyl3AZoW8h61dxsAEydxYtO5RoYI1mT9l23WyeBXv3ZSs+Ns36miI1xHgeWXA7vES+gqlUVVpLExQ1sgVGPcmpOfmU1XYgQlCp0v2VWjgN4PM+91+IIYqkwGATYPDEGiSQXKAlYOQ77u63UAjnlM4yxDMOiQhi7hC3XF6zHjkaQKfmtGQvMLRzbYUIjeU/JF3UH+t4L7e995cjQpNNbGZq70y2htmd3qrltnFXI7pW4wVeSC3pJubGTBVEw170PMEBM+xAaA9j9fSyY/zFYSGHEwb24NNdlJ6qFNZBmHcwYmOLuvE3y6v8DbXj5Mrngtc8QEs/7LRprhm5Y5QzWefajrredOuUxC+i7KVqMfNNwQSg1hu7ngHCyVpH1/iOXCxA+u3Ee+IhmtoEGmUitCUQGy8y3J3baz/9075aRZwWCdA7hSU6QxBYBzvLlETnwMhq3Q48nWgwnE/wgfsh5bNrdOOCqzm642wHxxkhQqygvZjskC27/doUYzlZj63LP5Rb4FQYdzdiIAI1ECnxAM8F+G96VErYpeqhfidtG9CdzTbLMf+/2a8Uqxg=
+        api_key: $NPM_TOKEN
         on:
           tags: true
           all_branches: true
