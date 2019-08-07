@@ -1,5 +1,6 @@
 {
   "name": "@suratu-io/skeleton",
+  "version": "0.0.1",
   "description": "Smart react component without styles",
   "main": "index.js",
   "publishConfig": {
