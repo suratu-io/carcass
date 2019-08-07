@@ -1,28 +1,43 @@
 language: node_js
-
 dist: trusty
-
 git:
   submodules: true
 
 node_js:
   - '12'
-
 install:
   - npm i
 
-script:
-  - npm run lint
-  - npm test
+stages:
+  - prepare
+  - deploy_npm
+  - name: deploy_page
+    if: branch = master
 
-before_deploy:
-  - npm run build:storybook
-  - mv docs/* .
-
-deploy:
-  provider: pages
-  skip_cleanup: true
-  github_token: $GITHUB_TOKEN
-  keep_history: true
-  on:
-    branch: master
+jobs:
+  include:
+    - stage: prepare
+      script:
+        - npm run lint
+        - npm run test
+    - stage: deploy_npm
+      deploy:
+        provider: npm
+        email: alihan.arshabekov@gmail.com
+        tag: $TRAVIS_TAG
+        api_key:
+          secure: o/wQgtT7vBCXt3hZE91sO/M/aFyg4GSI/L5wVQoTL+cOXhkedHmBb+vAYsXyQgKEgKSqKf4292hvYH5s3kWMrTXxus4lA242sY2BJG7frFD5+nZYpHaUnf55X+DsoWWaWb8ujZFq3yKgpE8uTCZXvsTCglbuhdX+432rXp8CC75nKii7Y2D9PoUidQb8/3sU3Om+pvl8hNri/wgPjN/Lm19utJcYDPTjl8h15Aey3R84oKRXKbrHTyBX2z+wLKQf+Zu6ZADSIifxmtlBHD/wPFaYPos5qbYyK8CsnryY3rqVtSWTAcCj13nG4LSnCNyn7ekz2uvf6ax8akXqVUPb97MD60i7x8HV8avBHIrTr5IfPb3bqa0ee3i6iLOso/VtmwFiGw948XLoylpvm2w/a5TNyZY57nhE09t5s4DOyfQ+e9OLJzijkXl4ue5PgISpdnUtSePrWCVSJmv3mv6MRu1GirPlFrWfWZMq7VZyRgqmnN91bGWITOnJsUb+DNa6+dRMO8c4E4jn4ZxTPg/UcbDRMu6nymKyymyZDHIggwiuwO/mtjSclCxOEpHcnY/LAIkBE0cWWwpS3SAtv1G8bDqAp1P299MMloQpYFTRmVAFqpNg9i5a0nIVCzVz5ORZt7iT/Zpn1eWcFsnds1aYiBa08nqQsw3qTjMDZate/lA=
+        on:
+          tags: true
+          all_branches: true
+    - stage: deploy_page
+      deploy:
+        script:
+          - npm run build:storybook
+          - mv docs/* .
+        provider: pages
+        skip_cleanup: true
+        github_token: $GITHUB_TOKEN
+        keep_history: true
+        on:
+          tags: true

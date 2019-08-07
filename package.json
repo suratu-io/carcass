@@ -1,10 +1,10 @@
 {
   "name": "@suratu-io/skeleton",
-  "version": "0.1.0-alpha.2",
+  "version": "0.1.0-alpha.1",
   "description": "Smart react component without styles",
   "main": "index.js",
   "publishConfig": {
-    "registry": "https://npm.pkg.github.com/"
+    "access": "public"
   },
   "scripts": {
     "dev:storybook": "start-storybook -c ./storybook -p 9001",
