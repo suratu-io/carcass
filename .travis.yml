@@ -11,7 +11,7 @@ install:
 stages:
   - prepare
   - name: deploy_page
-    if: branch = master
+    if: tag IS present
   - name: deploy_npm
     if: tag IS present
 
@@ -31,6 +31,7 @@ jobs:
         keep_history: true
         github_token: $GITHUB_TOKEN
         on:
+          tags: true
           branch: master
     - stage: deploy_npm
       deploy:
