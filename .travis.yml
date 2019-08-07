@@ -10,10 +10,14 @@ install:
 
 stages:
   - prepare
-  - name: deploy_npm
-    if: tag IS present
   - name: deploy_page
     if: tag IS present
+  - name: deploy_npm
+    if: tag IS present
+
+before_deploy:
+  - npm run build:storybook
+  - mv docs/* .
 
 jobs:
   include:
@@ -21,6 +25,14 @@ jobs:
       script:
         - npm run lint
         - npm run test
+    - stage: deploy_page
+      deploy:
+        provider: pages
+        skip_cleanup: true
+        keep_history: true
+        github_token: $GITHUB_TOKEN
+        on:
+          branch: master
     - stage: deploy_npm
       deploy:
         provider: npm
@@ -31,15 +43,3 @@ jobs:
         on:
           tags: true
           all_branches: true
-    - stage: deploy_page
-      before_deploy:
-        - npm run build:storybook
-        - mv docs/* .
-      deploy:
-        provider: pages
-        skip_cleanup: true
-        github_token: $GITHUB_TOKEN
-        keep_history: true
-        on:
-          tags: true
-          branch: master
