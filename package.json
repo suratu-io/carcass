@@ -1,8 +1,11 @@
 {
-  "name": "skeleton-monorepo",
-  "version": "0.1.0-alpha.1",
+  "name": "@suratu-io/skeleton",
+  "version": "0.1.0-alpha.2",
   "description": "Smart react component without styles",
   "main": "index.js",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  },
   "scripts": {
     "dev:storybook": "start-storybook -c ./storybook -p 9001",
     "build:storybook": "build-storybook -c ./storybook -o ./docs",
@@ -15,10 +18,7 @@
       "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
     }
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/suratu-io/skeleton.git"
-  },
+  "repository": "git://github.com/suratu-io/skeleton.git",
   "keywords": [
     "react",
     "skeleton",
