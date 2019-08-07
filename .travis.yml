@@ -10,9 +10,10 @@ install:
 
 stages:
   - prepare
-  - deploy_npm
+  - name: deploy_npm
+    if: tag IS present
   - name: deploy_page
-    if: branch = master
+    if: tag IS present
 
 jobs:
   include:
@@ -41,3 +42,4 @@ jobs:
         keep_history: true
         on:
           tags: true
+          branch: master
