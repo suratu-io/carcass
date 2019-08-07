@@ -10,9 +10,9 @@ install:
 
 stages:
   - prepare
-  - name: deploy_page
-    if: tag IS present
   - name: deploy_npm
+    if: tag IS present
+  - name: deploy_page
     if: tag IS present
 
 jobs:
@@ -21,6 +21,18 @@ jobs:
       script:
         - npm run lint
         - npm run test
+    - stage: deploy_npm
+      before_deploy:
+        - npm version --no-git-tag-version $TRAVIS_TAG
+      deploy:
+        provider: npm
+        keep_history: true
+        skip_cleanup: true
+        email: alihan.arshabekov@gmail.com
+        api_key: $NPM_TOKEN
+        on:
+          tags: true
+          all_branches: true
     - stage: deploy_page
       before_deploy:
         - npm run build:storybook
@@ -33,13 +45,3 @@ jobs:
         on:
           tags: true
           branch: master
-    - stage: deploy_npm
-      deploy:
-        script:
-          - npm version --no-git-tag-version $TRAVIS_TAG
-        provider: npm
-        email: alihan.arshabekov@gmail.com
-        api_key: $NPM_TOKEN
-        on:
-          tags: true
-          all_branches: true
