@@ -1,4 +1,4 @@
-<h1 align="center">:skull: Skeleton</h1>
+<h1 align="center">💀 Skeleton</h1>
 <p align="center">Smart react components without styles</p>
 
 <p align="center">
@@ -6,6 +6,12 @@
         <img
             src="https://travis-ci.org/suratu-io/skeleton.svg"
             alt="Skeleton Build Status"
+        >
+    </a>
+    <a href="http://suratu-io/skeleton">
+        <img
+            src="https://img.shields.io/website/http/suratu.io/skeleton?down_color=lightgrey&down_message=offline&up_color=blue&up_message=online"
+            alt="Demo Website"
         >
     </a>
 </p>
